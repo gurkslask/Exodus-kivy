@@ -1,20 +1,22 @@
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.properties import *
-from kivy.vector import Vector
-from kivy.clock import Clock
+#from kivy.vector import Vector
+#from kivy.clock import Clock
 from random import randint
 from kivy.uix.button import Button
 from kivy.uix.label import Label
-from kivy.graphics import Color, Ellipse, Line
-from kivy.uix.boxlayout import BoxLayout
+#from kivy.graphics import Color, Ellipse, Line
+#from kivy.uix.boxlayout import BoxLayout
 from ExodusTrade import ExodusTrade
-from kivy.uix.anchorlayout import *
+#from kivy.uix.anchorlayout import *
 from kivy.uix.floatlayout import *
 from kivy.base import runTouchApp
-from kivy.uix.spinner import Spinner
+#from kivy.uix.spinner import Spinner
+from kivy.uix.checkbox import CheckBox
 
-class Exodus(AnchorLayout):
+
+class Exodus(FloatLayout):
     txt_inpt2 = StringProperty('')
     enint = NumericProperty(1)
     exo = ExodusTrade()

@@ -138,7 +138,12 @@
             pos: (root.width *0.8, root.height * 0.4)
             group: 'playerturn'
             on_press: root.exo.SetTurn(6) 
-            on_press: root.add_turn(root.exo.Turn)                    
+            on_press: root.add_turn(root.exo.Turn)  
+
+        CheckBox:
+            id:check1
+            size_hint:(.1, .1)
+            pos:(root.width *0.6, root.height*0.4)                  
 
 
         Button:
