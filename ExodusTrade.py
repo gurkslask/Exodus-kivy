@@ -13,11 +13,19 @@ class ExodusTrade:
 		self.RatioSell5P = {1:5, 2:5, 3:4, 4:3, 5:3}
 		self.RatioBuy5P = {1:3, 2:4, 3:4, 4:5, 5:6}		
 		self.RatioSell6P = {1:5, 2:5, 3:4, 4:4, 5:3, 6:3}
-		self.RatioBuy6P = {1:3, 2:4, 3:4, 4:5, 5:5, 6:6}		
+		self.RatioBuy6P = {1:3, 2:4, 3:4, 4:5, 5:5, 6:6}	
+		self.AdvancedTrading = False	
 
 	def CheckIfRightTurn(self):
 		assert self.Turn <= len(self.RatioSell), 'Wrong turn'
 
+	def SetAdvancedTrading(self, Active):
+		self.AdvancedTrading = Active
+		if self.AdvancedTrading:
+			self.AddIfAdvanced = 1
+		elif not self.AdvancedTrading
+			self.AddIfAdvanced = 0
+		
 	def SetRatio(self, Players):
 		self.Players = Players
 		assert 2 <= Players <= 6, 'Wrong number of players, must be 2-6'
@@ -35,7 +43,7 @@ class ExodusTrade:
 			self.RatioBuy = self.RatioBuy5P	
 		elif Players == 6:
 			self.RatioSell = self.RatioSell6P
-			self.RatioBuy = self.RatioBuy6P									
+			self.RatioBuy = self.RatioBuy6P
 
 	def SetTurn(self, Turn):
 		self.Turn = Turn
@@ -50,22 +58,22 @@ class ExodusTrade:
 	def SellGreen(self):
 		self.CheckIfRightTurn()
 		self.PlayerStash['Green'] = self.PlayerStash['Green'] - 1
-		self.PlayerStash['Blue'] = self.PlayerStash['Blue'] + self.RatioSell[self.Turn]
+		self.PlayerStash['Blue'] = self.PlayerStash['Blue'] + self.RatioSell[self.Turn] + self.AddIfAdvanced
 
 	def SellRed(self): 
 		self.CheckIfRightTurn()
 		self.PlayerStash['Red'] = self.PlayerStash['Red'] - 1
-		self.PlayerStash['Blue'] = self.PlayerStash['Blue'] + self.RatioSell[self.Turn]
+		self.PlayerStash['Blue'] = self.PlayerStash['Blue'] + self.RatioSell[self.Turn] + self.AddIfAdvanced
 
 	def BuyRed(self):
 		self.CheckIfRightTurn()
 		self.PlayerStash['Red'] = self.PlayerStash['Red'] + 1
-		self.PlayerStash['Blue'] = self.PlayerStash['Blue'] - self.RatioBuy[self.Turn]
+		self.PlayerStash['Blue'] = self.PlayerStash['Blue'] - self.RatioBuy[self.Turn] - self.AddIfAdvanced
 
 	def BuyGreen(self):
 		self.CheckIfRightTurn()
 		self.PlayerStash['Green'] = self.PlayerStash['Green'] + 1
-		self.PlayerStash['Blue'] = self.PlayerStash['Blue'] - self.RatioBuy[self.Turn]	
+		self.PlayerStash['Blue'] = self.PlayerStash['Blue'] - self.RatioBuy[self.Turn] - self.AddIfAdvanced
 
 	def ClearPlayerStash(self):
 		self.PlayerStash = {'Red' : 0, 'Green' : 0, 'Blue' : 0}
