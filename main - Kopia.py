@@ -73,6 +73,7 @@ class Exodus(FloatLayout):
             try:
                 self.exo.BuyGreen()
                 self.txt_inpt2 = str(self.exo.GetPlayerStash())
+                #print(self.exo.AddIfAdvanced)
             except:
                 self.txt_inpt2 = 'Wrong turn!'
         elif cmd == 'br':

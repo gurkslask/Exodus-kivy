@@ -23,7 +23,7 @@ class ExodusTrade:
 		self.AdvancedTrading = Active
 		if self.AdvancedTrading:
 			self.AddIfAdvanced = 1
-		elif not self.AdvancedTrading
+		elif not self.AdvancedTrading:
 			self.AddIfAdvanced = 0
 		
 	def SetRatio(self, Players):
