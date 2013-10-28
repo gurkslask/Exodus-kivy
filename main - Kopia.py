@@ -22,10 +22,7 @@ class Exodus(FloatLayout):
     exo = ExodusTrade()
     txt_inpt = StringProperty('')
     act_turn = NumericProperty(0)
-    self.isadvanced = False
 
-    def on_isadvanced(self, instance, value):
-        print(value)
     '''
     def __init__(self):
         self.remove_widget(r1)
@@ -70,16 +67,17 @@ class Exodus(FloatLayout):
         self.add_widget(SRed)
         self.add_widget(BGreen)
         self.add_widget(Bred)'''
-
-    def CheckIfAdvanced(self):
         pass
 
-    def on_checkbox_active(checkbox, value):
+    def on_checkbox_active(self, checkbox, value):
         '''method for toggling advanced trading
         the method in exodustrade isnt ready yet, but this works , it is a toggle!'''
-        if value and self.isadvanced:
+        if value and self.exo.AdvancedTrading:
             print('a')
-
+            self.exo.AdvancedTrading = False
+        elif value and not self.exo.AdvancedTrading:
+            print('b')
+            self.exo.AdvancedTrading = True
 
     def action(self, cmd):
         if cmd == 'bg':
