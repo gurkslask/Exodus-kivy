@@ -143,7 +143,8 @@
         CheckBox:
             id:check1
             size_hint:(.1, .1)
-            pos:(root.width *0.6, root.height*0.4)                  
+            pos:(root.width *0.6, root.height*0.4)
+            on_active: root.on_checkbox_active('check1')
 
 
         Button:
