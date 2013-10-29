@@ -1,20 +1,5 @@
 #:kivy 1.0.9
 
-#<Buy>:
-#    Button:
-#        text:'Buy!'
-#        id: BGreen
-#        size_hint:(.3, .2)
-#        pos: (root.width *0.3, root.height * 0.6)
-#        on_press: root.coll(BGreen)#
-
-#    Button:
-##        text: 'B2'
-#        id: B2
-#        size_hint:(.3, .2)
-#        pos: (root.width *0.6, root.height * 0.6)
-#        on_press: root.draw(BGreen)
-#        on_press: print root.enint2
 
 <Exodus>:
     FloatLayout:
@@ -25,28 +10,24 @@
             size_hint:(.3, .2)
             pos: (0, root.height * 0.8)
             on_press: root.action('sg')
-            #on_press: root.txt_inpt2 = str(root.exo.GetPlayerStash()) 
         Button:
             text:'Sell red'
             id: SRed
             size_hint:(.3, .2)
             pos: (root.width *0.3, root.height * 0.8)
             on_press: root.action('sr')
-            #on_press: root.txt_inpt2 = str(root.exo.GetPlayerStash())            
         Button:
             text:'Buy green'
             id: BGreen
             size_hint:(.3, .2)
             pos: (0, root.height * 0.6)
             on_press: root.action('bg') 
-            #on_press: root.txt_inpt2 = str(root.exo.GetPlayerStash())
         Button:
             text:'Buy red'
             id: BGreen
             size_hint:(.3, .2)
             pos: (root.width *0.3, root.height * 0.6)
             on_press: root.action('br')
-            #on_press: root.txt_inpt2 = str(root.exo.GetPlayerStash())
 
 
 
@@ -57,9 +38,6 @@
             pos: (root.width *0.6, root.height * 0.9)
             group: 'playergroup'
             on_press: root.exo.SetRatio(2)
-            on_press: root.add_player(root.exo.Players)                    
-
-
         ToggleButton:
             text:'3player'
             id:p3
@@ -98,7 +76,6 @@
             pos: (root.width *0.8, root.height * 0.9)
             group: 'playerturn'
             on_press: root.exo.SetTurn(1)
-            on_press: root.add_turn(root.exo.Turn)
         ToggleButton:
             text:'round 2'
             id:r2
@@ -106,7 +83,6 @@
             pos: (root.width *0.8, root.height * 0.8)
             group: 'playerturn'
             on_press: root.exo.SetTurn(2)
-            on_press: root.add_turn(root.exo.Turn)                    
         ToggleButton:
             text:'round 3'
             id:r3
@@ -114,7 +90,6 @@
             pos: (root.width *0.8, root.height * 0.7)
             group: 'playerturn'
             on_press: root.exo.SetTurn(3)
-            on_press: root.add_turn(root.exo.Turn)                    
         ToggleButton:
             text:'round 4'
             id:r4
@@ -122,7 +97,6 @@
             pos: (root.width *0.8, root.height * 0.6)
             group: 'playerturn'
             on_press: root.exo.SetTurn(4)             
-            on_press: root.add_turn(root.exo.Turn)                    
         ToggleButton:
             text:'round 5'
             id:r5
@@ -130,7 +104,6 @@
             pos: (root.width *0.8, root.height * 0.5)
             group: 'playerturn'
             on_press: root.exo.SetTurn(5)
-            on_press: root.add_turn(root.exo.Turn)                    
         ToggleButton:
             text:'round 6'
             id:r6
@@ -138,13 +111,16 @@
             pos: (root.width *0.8, root.height * 0.4)
             group: 'playerturn'
             on_press: root.exo.SetTurn(6) 
-            on_press: root.add_turn(root.exo.Turn)  
 
         CheckBox:
             id:check1
             size_hint:(.1, .1)
             pos:(root.width *0.6, root.height*0.4)
-            on_active: root.on_checkbox_active('check1')
+            on_active: root.on_checkbox_active(self, 'check1')
+        Label:
+            text:'Advanced'
+            size_hint:(.1, .1)
+            pos:(root.width *0.67, root.height*0.4)            
 
 
         Button:
@@ -155,15 +131,12 @@
             on_press: root.exo.ClearPlayerStash()
             on_press: root.txt_inpt2 = str(root.exo.GetPlayerStash())            
 
-            
-
         TextInput:
             id: txt_inpt
             text: root.txt_inpt2
             size_hint:(1, .2)
             pos: (0,0)
 
-        Buy:
 
 
 

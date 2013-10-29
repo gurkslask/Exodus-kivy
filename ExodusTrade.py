@@ -14,17 +14,15 @@ class ExodusTrade:
 		self.RatioBuy5P = {1:3, 2:4, 3:4, 4:5, 5:6}		
 		self.RatioSell6P = {1:5, 2:5, 3:4, 4:4, 5:3, 6:3}
 		self.RatioBuy6P = {1:3, 2:4, 3:4, 4:5, 5:5, 6:6}	
-		self.AdvancedTrading = False	
+		self.AdvancedTrading = False
+
 
 	def CheckIfRightTurn(self):
 		assert self.Turn <= len(self.RatioSell), 'Wrong turn'
 
 	def SetAdvancedTrading(self, Active):
 		self.AdvancedTrading = Active
-		if self.AdvancedTrading:
-			self.AddIfAdvanced = 1
-		elif not self.AdvancedTrading:
-			self.AddIfAdvanced = 0
+
 		
 	def SetRatio(self, Players):
 		self.Players = Players
@@ -58,22 +56,22 @@ class ExodusTrade:
 	def SellGreen(self):
 		self.CheckIfRightTurn()
 		self.PlayerStash['Green'] = self.PlayerStash['Green'] - 1
-		self.PlayerStash['Blue'] = self.PlayerStash['Blue'] + self.RatioSell[self.Turn] + self.AddIfAdvanced
+		self.PlayerStash['Blue'] = self.PlayerStash['Blue'] + self.RatioSell[self.Turn] + self.AdvancedTrading
 
 	def SellRed(self): 
 		self.CheckIfRightTurn()
 		self.PlayerStash['Red'] = self.PlayerStash['Red'] - 1
-		self.PlayerStash['Blue'] = self.PlayerStash['Blue'] + self.RatioSell[self.Turn] + self.AddIfAdvanced
+		self.PlayerStash['Blue'] = self.PlayerStash['Blue'] + self.RatioSell[self.Turn] + self.AdvancedTrading
 
 	def BuyRed(self):
 		self.CheckIfRightTurn()
 		self.PlayerStash['Red'] = self.PlayerStash['Red'] + 1
-		self.PlayerStash['Blue'] = self.PlayerStash['Blue'] - self.RatioBuy[self.Turn] - self.AddIfAdvanced
+		self.PlayerStash['Blue'] = self.PlayerStash['Blue'] - (self.RatioBuy[self.Turn] + self.AdvancedTrading)
 
 	def BuyGreen(self):
 		self.CheckIfRightTurn()
 		self.PlayerStash['Green'] = self.PlayerStash['Green'] + 1
-		self.PlayerStash['Blue'] = self.PlayerStash['Blue'] - self.RatioBuy[self.Turn] - self.AddIfAdvanced
+		self.PlayerStash['Blue'] = self.PlayerStash['Blue'] - (self.RatioBuy[self.Turn] + self.AdvancedTrading)
 
 	def ClearPlayerStash(self):
 		self.PlayerStash = {'Red' : 0, 'Green' : 0, 'Blue' : 0}
@@ -87,8 +85,9 @@ class ExodusTrade:
 def main():
 	Test = ExodusTrade()
 	Test.SetRatio(2)
-	Test.SellGreen(2)
-	Test.SellGreen(3)
+	Test.SetTurn(1)
+	Test.SellGreen()
+	Test.SellGreen()
 	print(len(Test.RatioSell))
 	print(Test.GetPlayerStash())
 
