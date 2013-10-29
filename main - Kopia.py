@@ -27,29 +27,41 @@ class Exodus(FloatLayout):
 
     def action(self, cmd):
         if cmd == 'bg':
-            try:
-                self.exo.BuyGreen()
-                self.txt_inpt2 = str(self.exo.GetPlayerStash())
-            except:
-                self.txt_inpt2 = 'Wrong turn!'
+            if self.exo.OnlySell:
+                self.txt_inpt2= 'Advanced Trading is not active, only selling is allowed'
+            else:
+                try:
+                    self.exo.BuyGreen()
+                    self.txt_inpt2 = str(self.exo.GetPlayerStash())
+                except:
+                    self.txt_inpt2 = 'Wrong turn!'
         elif cmd == 'br':
-            try:
-                self.exo.BuyRed()
-                self.txt_inpt2 = str(self.exo.GetPlayerStash())
-            except:
-                self.txt_inpt2 = 'Wrong turn!'
+            if self.exo.OnlySell:
+                self.txt_inpt2='Advanced Trading is not active, only selling is allowed'   
+            else: 
+                try:
+                    self.exo.BuyRed()
+                    self.txt_inpt2 = str(self.exo.GetPlayerStash())
+                except:
+                    self.txt_inpt2 = 'Wrong turn!'
         elif cmd == 'sr':
-            try:
-                self.exo.SellRed()
-                self.txt_inpt2 = str(self.exo.GetPlayerStash())
-            except:
-                self.txt_inpt2 = 'Wrong turn!'        
+            if self.exo.OnlyBuy:
+                self.txt_inpt2='Advanced Trading is not active, only buying is allowed'   
+            else: 
+                try:
+                    self.exo.SellRed()
+                    self.txt_inpt2 = str(self.exo.GetPlayerStash())
+                except:
+                    self.txt_inpt2 = 'Wrong turn!'        
         elif cmd == 'sg':
-            try:
-                self.exo.SellGreen()
-                self.txt_inpt2 = str(self.exo.GetPlayerStash())
-            except:
-                self.txt_inpt2 = 'Wrong turn!'
+            if self.exo.OnlyBuy:
+                self.txt_inpt2='Advanced Trading is not active, only buying is allowed' 
+            else:
+                try:
+                    self.exo.SellGreen()
+                    self.txt_inpt2 = str(self.exo.GetPlayerStash())
+                except:
+                    self.txt_inpt2 = 'Wrong turn!'
 
 class PongApp(App):
     def build(self):

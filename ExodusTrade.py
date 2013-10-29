@@ -15,6 +15,8 @@ class ExodusTrade:
 		self.RatioSell6P = {1:5, 2:5, 3:4, 4:4, 5:3, 6:3}
 		self.RatioBuy6P = {1:3, 2:4, 3:4, 4:5, 5:5, 6:6}	
 		self.AdvancedTrading = False
+		self.OnlyBuy = False
+		self.OnlySell = False
 
 
 	def CheckIfRightTurn(self):
@@ -54,27 +56,38 @@ class ExodusTrade:
 		return temp
 
 	def SellGreen(self):
+		if self.AdvancedTrading == 0 and not self.OnlyBuy:
+			self.OnlySell = True
 		self.CheckIfRightTurn()
 		self.PlayerStash['Green'] = self.PlayerStash['Green'] - 1
 		self.PlayerStash['Blue'] = self.PlayerStash['Blue'] + self.RatioSell[self.Turn] + self.AdvancedTrading
 
 	def SellRed(self): 
+		if self.AdvancedTrading == 0 and not self.OnlyBuy:
+			self.OnlySell = True
 		self.CheckIfRightTurn()
 		self.PlayerStash['Red'] = self.PlayerStash['Red'] - 1
 		self.PlayerStash['Blue'] = self.PlayerStash['Blue'] + self.RatioSell[self.Turn] + self.AdvancedTrading
 
 	def BuyRed(self):
+		if self.AdvancedTrading == 0 and not self.OnlySell:
+			self.OnlyBuy = True
 		self.CheckIfRightTurn()
 		self.PlayerStash['Red'] = self.PlayerStash['Red'] + 1
-		self.PlayerStash['Blue'] = self.PlayerStash['Blue'] - (self.RatioBuy[self.Turn] + self.AdvancedTrading)
+		self.PlayerStash['Blue'] = self.PlayerStash['Blue'] - (self.RatioBuy[self.Turn] - self.AdvancedTrading)
 
 	def BuyGreen(self):
+		if self.AdvancedTrading == 0 and not self.OnlySell:
+			self.OnlyBuy = True
 		self.CheckIfRightTurn()
 		self.PlayerStash['Green'] = self.PlayerStash['Green'] + 1
-		self.PlayerStash['Blue'] = self.PlayerStash['Blue'] - (self.RatioBuy[self.Turn] + self.AdvancedTrading)
+		self.PlayerStash['Blue'] = self.PlayerStash['Blue'] - (self.RatioBuy[self.Turn] - self.AdvancedTrading)
 
 	def ClearPlayerStash(self):
 		self.PlayerStash = {'Red' : 0, 'Green' : 0, 'Blue' : 0}
+		self.OnlyBuy = False
+		self.OnlySell = False
+
 
 
 
